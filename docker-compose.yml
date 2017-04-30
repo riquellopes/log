@@ -1,0 +1,37 @@
+version: '2'
+services:
+    work:
+      build: .
+      restart: always
+      container_name: facebook
+      volumes:
+       - .:/facebook
+      depends_on:
+       - mysql
+       - log
+      links:
+       - mysql
+       - log
+      env_file:
+       - .env
+      expose:
+       - 5001
+      ports:
+       - "5001:5001"
+      command: /bin/bash -c "python run.py"
+    mysql:
+      container_name: facebook-mysql
+      image: mysql:5.6
+      ports:
+       - 3306:3306
+      environment:
+       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+       - MYSQL_DATABASE=facebook_local
+    log:
+      container_name: facebook-log
+      image: sebp/elk
+      ports:
+       - "5601:5601"
+       - "9200:9200"
+       - "9300:9300"
+       - "5000:5000"
