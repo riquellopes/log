@@ -1,4 +1,5 @@
 import pytest
+import logging
 from facebook.api import app as _app
 from facebook.api import db
 
@@ -7,7 +8,10 @@ from facebook.api import db
 def app(request):
     ctx = _app.app_context()
     ctx.app.config['TESTING'] = True
+    ctx.app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///:memory:"
     ctx.push()
+
+    logging.disable(logging.CRITICAL)
 
     def teardown():
         ctx.pop()
