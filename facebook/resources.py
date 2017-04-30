@@ -19,6 +19,8 @@ class PersonResource(Resource):
         try:
             response = requests.get(app.config['GRAPH_FB'].format(person.facebookId))
             json = response.json()
+            app.logger.info("Facebook response - json:{}".format(str(json)))
+
             person.username = json['username']
             person.name = json['name']
             person.gender = json['gender']

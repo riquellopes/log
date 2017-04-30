@@ -1,0 +1,17 @@
+FROM python:3.5.2
+MAINTAINER Henrique Lopes
+
+ENV PYTHONUNBUFFERED 1
+
+RUN mkdir /facebook
+WORKDIR /facebook
+
+ADD . /facebook/
+
+# Install dependencies apt
+RUN apt-get install libmysqlclient-dev
+
+# Installing project dependencies.
+RUN pip install -U pip
+RUN pip install -r requirements.txt
+RUN pip install -r requirements_dev.txt

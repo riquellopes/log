@@ -24,3 +24,14 @@ test-cov: clean
 
 run: clean
 	PYTHONPATH=. ${PYTHON} run.py
+
+build:
+	docker-compose stop
+	docker-compose build
+
+up:
+	docker-compose stop
+	docker-compose up
+
+stop:
+	docker-compose stop
