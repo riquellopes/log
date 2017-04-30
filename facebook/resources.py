@@ -38,7 +38,7 @@ class PersonResource(Resource):
         except Exception:
             app.logger.exception("Error to delete person.")
             return "", http.HTTPStatus.BAD_REQUEST
-        return "", 204
+        return "", http.HTTPStatus.OK
 
     def get(self):
         app.logger.info("Init method get /v1/person")

@@ -36,7 +36,7 @@ def test_should_get_status_201_when_information_about_user_are_saved(test_client
 
 def test_should_get_status_204_when_information_about_are_removed(test_client, user_one):
     response = test_client.delete("/v1/person/{}".format(user_one.facebookId))
-    assert response.status_code == 204
+    assert response.status_code == 200
 
 
 def test_service_person_should_get_all_users(test_client, user_one):
