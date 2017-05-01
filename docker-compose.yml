@@ -8,10 +8,8 @@ services:
        - .:/facebook
       depends_on:
        - mysql
-       - log
       links:
        - mysql
-       - log
       env_file:
        - .env
       expose:
@@ -27,11 +25,3 @@ services:
       environment:
        - MYSQL_ALLOW_EMPTY_PASSWORD=yes
        - MYSQL_DATABASE=facebook_local
-    log:
-      container_name: facebook-log
-      image: sebp/elk
-      ports:
-       - "5601:5601"
-       - "9200:9200"
-       - "9300:9300"
-       - "5000:5000"
